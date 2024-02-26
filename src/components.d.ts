@@ -6,6 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MelisekmAmbulanceWlApp {
+        "basePath": string;
+    }
     interface MelisekmAmbulanceWlEditor {
         "entryId": string;
     }
@@ -16,7 +19,17 @@ export interface MelisekmAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> 
     detail: T;
     target: HTMLMelisekmAmbulanceWlEditorElement;
 }
+export interface MelisekmAmbulanceWlListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMelisekmAmbulanceWlListElement;
+}
 declare global {
+    interface HTMLMelisekmAmbulanceWlAppElement extends Components.MelisekmAmbulanceWlApp, HTMLStencilElement {
+    }
+    var HTMLMelisekmAmbulanceWlAppElement: {
+        prototype: HTMLMelisekmAmbulanceWlAppElement;
+        new (): HTMLMelisekmAmbulanceWlAppElement;
+    };
     interface HTMLMelisekmAmbulanceWlEditorElementEventMap {
         "editor-closed": string;
     }
@@ -34,25 +47,42 @@ declare global {
         prototype: HTMLMelisekmAmbulanceWlEditorElement;
         new (): HTMLMelisekmAmbulanceWlEditorElement;
     };
+    interface HTMLMelisekmAmbulanceWlListElementEventMap {
+        "entry-clicked": string;
+    }
     interface HTMLMelisekmAmbulanceWlListElement extends Components.MelisekmAmbulanceWlList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLMelisekmAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLMelisekmAmbulanceWlListElement, ev: MelisekmAmbulanceWlListCustomEvent<HTMLMelisekmAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLMelisekmAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLMelisekmAmbulanceWlListElement, ev: MelisekmAmbulanceWlListCustomEvent<HTMLMelisekmAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLMelisekmAmbulanceWlListElement: {
         prototype: HTMLMelisekmAmbulanceWlListElement;
         new (): HTMLMelisekmAmbulanceWlListElement;
     };
     interface HTMLElementTagNameMap {
+        "melisekm-ambulance-wl-app": HTMLMelisekmAmbulanceWlAppElement;
         "melisekm-ambulance-wl-editor": HTMLMelisekmAmbulanceWlEditorElement;
         "melisekm-ambulance-wl-list": HTMLMelisekmAmbulanceWlListElement;
     }
 }
 declare namespace LocalJSX {
+    interface MelisekmAmbulanceWlApp {
+        "basePath"?: string;
+    }
     interface MelisekmAmbulanceWlEditor {
         "entryId"?: string;
         "onEditor-closed"?: (event: MelisekmAmbulanceWlEditorCustomEvent<string>) => void;
     }
     interface MelisekmAmbulanceWlList {
+        "onEntry-clicked"?: (event: MelisekmAmbulanceWlListCustomEvent<string>) => void;
     }
     interface IntrinsicElements {
+        "melisekm-ambulance-wl-app": MelisekmAmbulanceWlApp;
         "melisekm-ambulance-wl-editor": MelisekmAmbulanceWlEditor;
         "melisekm-ambulance-wl-list": MelisekmAmbulanceWlList;
     }
@@ -61,6 +91,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "melisekm-ambulance-wl-app": LocalJSX.MelisekmAmbulanceWlApp & JSXBase.HTMLAttributes<HTMLMelisekmAmbulanceWlAppElement>;
             "melisekm-ambulance-wl-editor": LocalJSX.MelisekmAmbulanceWlEditor & JSXBase.HTMLAttributes<HTMLMelisekmAmbulanceWlEditorElement>;
             "melisekm-ambulance-wl-list": LocalJSX.MelisekmAmbulanceWlList & JSXBase.HTMLAttributes<HTMLMelisekmAmbulanceWlListElement>;
         }
