@@ -13,9 +13,10 @@ export class MelisekmAmbulanceWlList {
   @Prop() ambulanceId: string;
   @State() errorMessage: string;
 
-  waitingPatients: any[];
+  waitingPatients: WaitingListEntry[];
 
-  private async getWaitingPatientsAsync() {
+
+  private async getWaitingPatientsAsync(): Promise<WaitingListEntry[]> {
     try {
       const response = await
         AmbulanceWaitingListApiFactory(undefined, this.apiBase).
