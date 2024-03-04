@@ -54,6 +54,7 @@ export class MelisekmAmbulanceWlApp {
       <Host>
         {element === "editor"
           ? <Melisekm-ambulance-wl-editor entry-id={entryId}
+            ambulance-id={this.ambulanceId} api-base={this.apiBase}
             oneditor-closed={() => navigate("./list")} >
           </Melisekm-ambulance-wl-editor>
           : <Melisekm-ambulance-wl-list  ambulance-id={this.ambulanceId} api-base={this.apiBase} 
