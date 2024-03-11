@@ -49,9 +49,9 @@ describe('Melisekm-ambulance-wl-editor', () => {
 
     const page = await newSpecPage({
       components: [MelisekmAmbulanceWlEditor],
-      html: `<Melisekm-ambulance-wl-editor entry-id="test-entry"
+      html: `<melisekm-ambulance-wl-editor entry-id="test-entry"
            ambulance-id="test-ambulance" api-base="http://sample.test/api">
-        </Melisekm-ambulance-wl-editor>`,
+        </melisekm-ambulance-wl-editor>`,
     });
     await delay(300);
     await page.waitForChanges();
