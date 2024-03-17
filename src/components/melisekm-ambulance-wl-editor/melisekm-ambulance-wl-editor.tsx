@@ -44,9 +44,7 @@ export class MelisekmAmbulanceWlEditor {
       return undefined
     }
     try {
-      const response
-        = await AmbulanceWaitingListApiFactory(undefined, this.apiBase)
-          .getWaitingListEntry(this.ambulanceId, this.entryId)
+      const response = await AmbulanceWaitingListApiFactory(undefined, this.apiBase).getWaitingListEntry(this.ambulanceId, this.entryId)
 
       if (response.status < 299) {
         this.entry = response.data;

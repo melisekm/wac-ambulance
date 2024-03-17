@@ -1,7 +1,5 @@
 import { Component, Host, Prop, State, h } from '@stencil/core';
 
-
-
 declare global {
   interface Window { navigation: any; }
 }
@@ -37,8 +35,6 @@ export class MelisekmAmbulanceWlApp {
     toRelative(location.pathname)
   }
   render() {
-    console.debug("<pfx>-ambulance-wl-app.render() - path: %s", this.relativePath);
-
     let element = "list"
     let entryId = "@new"
 
@@ -54,17 +50,20 @@ export class MelisekmAmbulanceWlApp {
 
     return (
       <Host>
-        {element === "editor"
-          ? <Melisekm-ambulance-wl-editor entry-id={entryId}
-            ambulance-id={this.ambulanceId} api-base={this.apiBase}
-            oneditor-closed={() => navigate("./list")} >
-          </Melisekm-ambulance-wl-editor>
-          : <Melisekm-ambulance-wl-list  ambulance-id={this.ambulanceId} api-base={this.apiBase} 
-          onentry-clicked={(ev: CustomEvent<string>) => navigate("./entry/" + ev.detail)}>
-
-          </Melisekm-ambulance-wl-list>
-        }
-
+        {element === "editor" ? (
+          <melisekm-ambulance-wl-editor
+            entry-id={entryId}
+            ambulance-id={this.ambulanceId}
+            api-base={this.apiBase}
+            oneditor-closed={() => navigate("./list")}
+          ></melisekm-ambulance-wl-editor>
+        ) : (
+          <melisekm-ambulance-wl-list
+            ambulance-id={this.ambulanceId}
+            api-base={this.apiBase}
+            onentry-clicked={(ev: CustomEvent<string>) => navigate("./entry/" + ev.detail)}
+          ></melisekm-ambulance-wl-list>
+        )}
       </Host>
     );
   }

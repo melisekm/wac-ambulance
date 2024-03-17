@@ -15,12 +15,9 @@ export class MelisekmAmbulanceWlList {
 
   waitingPatients: WaitingListEntry[];
 
-
   private async getWaitingPatientsAsync(): Promise<WaitingListEntry[]> {
     try {
-      const response = await
-        AmbulanceWaitingListApiFactory(undefined, this.apiBase).
-          getWaitingListEntries(this.ambulanceId)
+      const response = await AmbulanceWaitingListApiFactory(undefined, this.apiBase).getWaitingListEntries(this.ambulanceId)
       if (response.status < 299) {
         return response.data;
       } else {
